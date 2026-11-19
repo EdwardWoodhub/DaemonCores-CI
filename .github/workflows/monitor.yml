@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  REPOS: 'DaemonCores/debian-bootc DaemonCores/DaemonCores-VE DaemonCores/DaemonCores-CI'
+  REPOS: 'DaemonCores/debian-bootc DaemonCores/DaemonCores-VE EdwardWoodhub/DaemonCores-CI'
 
 jobs:
   monitor:
@@ -85,12 +85,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           body=$(cat "$REPORT")
-          url=$(gh issue list -R DaemonCores/DaemonCores-CI --state open \
+          url=$(gh issue list -R EdwardWoodhub/DaemonCores-CI --state open \
                 --search 'CI status in:title' --json number \
                 --jq '.[0].number // empty')
           if [ -n "$url" ]; then
-            gh issue edit "$url" -R DaemonCores/DaemonCores-CI --body "$body"
+            gh issue edit "$url" -R EdwardWoodhub/DaemonCores-CI --body "$body"
           else
-            gh issue create -R DaemonCores/DaemonCores-CI \
+            gh issue create -R EdwardWoodhub/DaemonCores-CI \
               --title 'CI status' --body "$body"
           fi

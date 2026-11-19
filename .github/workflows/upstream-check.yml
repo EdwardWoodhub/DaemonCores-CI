@@ -32,7 +32,7 @@ jobs:
       - name: Fetch tooling
         uses: actions/checkout@v4
         with:
-          repository: DaemonCores/DaemonCores-CI
+          repository: EdwardWoodhub/DaemonCores-CI
           ref: main
           path: .ci-tooling
           persist-credentials: false
