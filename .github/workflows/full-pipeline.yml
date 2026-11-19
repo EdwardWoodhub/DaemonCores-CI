@@ -433,7 +433,7 @@ jobs:
           repo="${GITHUB_REPOSITORY#*/}"
           echo "url=https://${owner,,}.github.io/${repo}" >>"$GITHUB_OUTPUT"
       - name: Fetch the shared tooling
-        if: ${{ env.HAS_APT == 'true' }}
+        if: ${{ env.HAS_APT == 'true' && needs.debs_publish.result == 'success' }}
         uses: actions/checkout@v7
         with:
           repository: EdwardWoodhub/DaemonCores-CI
@@ -441,7 +441,7 @@ jobs:
           path: .ci-tooling
           persist-credentials: false
       - id: hash
-        if: ${{ env.HAS_APT == 'true' }}
+        if: ${{ env.HAS_APT == 'true' && needs.debs_publish.result == 'success' }}
         shell: bash
         env:
           APT_GPG_KEY: ${{ secrets.APT_GPG_KEY }}
