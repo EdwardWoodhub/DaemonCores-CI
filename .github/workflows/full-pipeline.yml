@@ -519,7 +519,7 @@ jobs:
       issues: write
     if: |
       !cancelled() &&
-      needs.prepare.outputs.debs == 'true' &&
+      false &&
       (needs.base.result == 'success' || needs.base.result == 'skipped') &&
       (needs.build_env.result == 'success' || needs.build_env.result == 'skipped')
     uses: EdwardWoodhub/DaemonCores-CI/.github/workflows/bootc-debs-builder.yml@main

@@ -132,7 +132,7 @@ jobs:
             only_arches=$(sed -nE "s/^[[:space:]]*LABEL[[:space:]]+org\.daemoncores\.arches=[\"']?([a-z0-9, ]*).*/\1/p" "$name" \
               | head -n1 | tr ',' ' ')
             built_arches='[]'
-            for arch in amd64 arm64; do
+            for arch in amd64; do
               if [[ -n "${only_arches// /}" && " ${only_arches} " != *" ${arch} "* ]]; then
                 continue
               fi
